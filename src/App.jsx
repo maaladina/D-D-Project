@@ -1,9 +1,14 @@
 import React from 'react';
 import UsersPage from './components/UsersPage';
-import './App.css'
 
-const App = () => (
-  <UsersPage />
-)
+
+
+
+const App = () => {
+  return (
+    <UsersPage />
+  )
+}
+
 
 export default App
