@@ -1,32 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Table from "./Table";
 import Footer from "./Footer";
+import axios from "axios";
 
-const users = [
-  {
-    about: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    city: "Batumi",
-    email: "asdf@asdf.com",
-    id: 2,
-    image: "",
-    name: "Oleg",
-    nickname: "UserName"
-  },
-  {
-    about: "asdfklqwer asdf qwer s pxzcv puyqwer 1",
-    city: "city",
-    email: "testemail@asdf.ciom",
-    id: 3,
-    image: "",
-    name: "testname",
-    nickname: "testnickname"
-  }
-];
 
 export const Context = React.createContext()
 
+
 const UsersPage = () => {
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    const getUsers = async () => {
+      const response = await axios.get('http://localhost:4000/users');
+      const data = response.data.data;
+      setUsers(data);
+    }
+    getUsers();
+  }, []);
   return (
     <Context.Provider value={users}>
       <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
